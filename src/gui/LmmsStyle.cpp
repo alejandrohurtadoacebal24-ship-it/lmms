@@ -32,6 +32,7 @@
 #include <QPainterPath>  // IWYU pragma: keep
 #include <QStyleFactory>
 #include <QStyleOption>
+#include <QWidget> // Added for setting background color
 
 #include "embed.h"
 #include "LmmsStyle.h"
@@ -136,6 +137,9 @@ void drawPath( QPainter *p, const QPainterPath &path,
 LmmsStyle::LmmsStyle() :
 	QProxyStyle()
 {
+    // Set the application-wide background color to white
+    qApp->setStyleSheet("QMainWindow { background-color: white; }");
+
 	QFile file( "resources:style.css" );
 	file.open( QIODevice::ReadOnly );
 	qApp->setStyleSheet( file.readAll() );
